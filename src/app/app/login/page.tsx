@@ -1,12 +1,12 @@
 "use client";
 
-import { useEffect, useState, type FormEvent } from "react";
+import { Suspense, useEffect, useState, type FormEvent } from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { loginWithPassword, getCurrentUser, signOut } from "@/services/auth";
 import type { CurrentUser } from "@/types";
 
-export default function ClientLogin() {
+function ClientLoginForm() {
   const router = useRouter();
   const search = useSearchParams();
   const redirect = search.get("redirect") ?? "/app/dashboard";
@@ -139,5 +139,21 @@ export default function ClientLogin() {
         </p>
       </div>
     </main>
+  );
+}
+
+function LoginFallback() {
+  return (
+    <main className="flex min-h-dvh items-center justify-center px-4">
+      <div className="h-6 w-6 animate-spin rounded-full border-2 border-muted-foreground/30 border-t-foreground" />
+    </main>
+  );
+}
+
+export default function ClientLogin() {
+  return (
+    <Suspense fallback={<LoginFallback />}>
+      <ClientLoginForm />
+    </Suspense>
   );
 }
