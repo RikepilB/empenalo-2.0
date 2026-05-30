@@ -1,0 +1,32 @@
+@import "tailwindcss";
+
+/* Tailwind v4 CSS-first tokens. Dark fintech theme — ported subset of the
+   EMPEÑALO design system. Full token set lands with the design-system port. */
+@theme {
+  --color-background: #0b0d12;
+  --color-foreground: #f5f7fa;
+  --color-surface: #14171f;
+  --color-surface-2: #1b1f29;
+  --color-border: #262b36;
+  --color-muted-foreground: #9aa3b0;
+  --color-primary: #f97316;
+  --color-primary-foreground: #0b0d12;
+  --color-status-pending: #f5a623;
+  --color-status-accepted: #22c55e;
+  --color-destructive: #ef4444;
+}
+
+body {
+  background: var(--color-background);
+  color: var(--color-foreground);
+  font-family: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer components {
+  .input-field {
+    @apply w-full rounded-lg border border-[var(--color-border)] bg-[var(--color-surface-2)] px-3 py-2.5 text-sm text-[var(--color-foreground)] outline-none transition focus:border-[var(--color-primary)];
+  }
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg bg-[var(--color-primary)] px-4 py-2.5 text-sm font-semibold text-[var(--color-primary-foreground)] transition hover:opacity-90;
+  }
+}
