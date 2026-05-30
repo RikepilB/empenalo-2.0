@@ -17,3 +17,40 @@ export type CurrentUser = {
   };
   profile: Profile;
 };
+
+export type SubscriptionStatus = "active" | "trialing" | "past_due" | "canceled";
+
+export type BusinessContext = {
+  business: {
+    id: string;
+    name: string;
+    district: string | null;
+    verified_at: string | null;
+  };
+  subscription: {
+    id: string;
+    status: SubscriptionStatus;
+    plan: {
+      id: string;
+      name: string;
+      price_pen: number;
+      monthly_propuestas: number | null;
+    };
+    propuestas_used_this_period: number;
+    propuestas_remaining: number | null;
+    current_period_end: string | null;
+  } | null;
+};
+
+export type BusinessProfile = {
+  id: string;
+  name: string;
+  trade_name: string | null;
+  ruc: string | null;
+  phone: string | null;
+  district: string | null;
+  address: string | null;
+  city: string | null;
+  email: string | null;
+  verification_status: "pending" | "verified" | "rejected";
+};
